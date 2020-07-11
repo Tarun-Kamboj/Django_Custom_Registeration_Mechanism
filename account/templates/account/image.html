@@ -1,0 +1,98 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Profile Picture - My Kashmir</title>
+
+    <link rel="stylesheet" href="{% static 'account/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'account/footer.css' %}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="icon" href="{% static 'account/images/favicon.png' %}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+    <script>
+        $(window, document, undefined).ready(function() {
+
+        $('input').blur(function() {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+            });
+
+        var $ripples = $('.ripples');
+
+        $ripples.on('click.Ripples', function(e) {
+
+            var $this = $(this);
+            var $offset = $this.parent().offset();
+            var $circle = $this.find('.ripplesCircle');
+
+            var x = e.pageX - $offset.left;
+            var y = e.pageY - $offset.top;
+
+            $circle.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+
+            $this.addClass('is-active');
+
+            });
+
+            $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+                $(this).removeClass('is-active');
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+    <div class="signin">
+
+        <h1>Upload Profile Picture</h1>
+        <div class="currentImg">
+            <img id="thumbnail" src="{% static 'account/images/user_default.png' %}" alt="Profile | My Kashmir">
+        </div>
+
+        <form method="post" enctype="multipart/form-data">{% csrf_token %}
+          <div class="group">
+            <input id="file-upload" name="prof_img" type="file" accept="image/*" value="{{account_form.initial.prof_img}}"><span class="highlight"></span><span class="bar"></span>
+          </div>
+
+          <button type="submit" class="button buttonBlue">Upload
+            <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+          </button>
+        </form>
+
+        <button type="button" class="button buttonSec"><a href="{% url 'home' %}">Skip</a>
+        </button>
+
+    </div>
+</body>
+
+<script>
+    function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            document.querySelector('#thumbnail').setAttribute('src', e.target.result);
+        }
+
+    reader.readAsDataURL(input.files[0]); // convert to base64 string
+        }
+    }
+
+    document.querySelector('#file-upload').onchange = function() {
+        readURL(this);
+    }
+</script>
+
+</html>

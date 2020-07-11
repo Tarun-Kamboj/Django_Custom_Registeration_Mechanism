@@ -1,0 +1,16 @@
+{% load static %}
+
+    {% if request.user.prof_img %}
+      <img src="{{ request.user.prof_img.url }}" height="50px" width="50px"><br><br>
+    {% else %}
+      <img src="{% static 'main/images/user_default.png' %}" height="50px" width="50px"><br><br>
+    {% endif %}
+
+    {% if request.user.is_authenticated %}
+      <div>Hi, {{ request.user.username }}</div>
+      <div><a href="{% url 'account:account' %}">Account Settings</a></div>
+      <div><a href="{% url 'account:logout' %}">Logout</a></div>
+    {% else %}
+      <div id="greeting-text">Hey there!</div>
+      <div><a href="{% url 'account:login' %}">Sign in / Sign up</a></div>
+    {% endif %}

@@ -1,0 +1,38 @@
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+  <h1>Account</h1>
+  <input type="email" name="email" id="inputEmail" placeholder="Email address" value={{account_form.initial.email}}><br><br>
+  <input type="text" name="username" id="inputUsername" placeholder="First Name" value="{{account_form.initial.username}}"><br><br>
+  <input type="text" name="gender" id="inputGender" placeholder="Gender" value="{{account_form.initial.gender}}"><br><br>
+  <input type="text" name="phone_no" id="inputPhoneno" placeholder="Phone No." value="{{account_form.initial.phone_no}}"><br><br>
+
+  {% if request.user.prof_img %}
+    <p>Current profile Image:</p><br>
+    <img src="{{ request.user.prof_img.url }}" height="50px" width="50px"><br><br>
+    <p>Choose new file below:</p>
+  {% else %}
+    <p>Upload profile picture:</p>
+  {% endif %}
+
+  <input type="file" id="inputImage" name="prof_img" accept="image/*" value="{{account_form.initial.prof_img}}"><br><br>
+
+  {% for field in account_form %}
+      <p>
+        {% for error in field.errors %}
+          <p style="color: red">{{ error }}</p>
+        {% endfor %}
+      </p>
+  {% endfor %}
+
+  {% if account_form.non_field_errors %}
+    <div style="color: red">
+      <p>{{account_form.non_field_errors}}</p>
+    </div>
+  {% endif %}
+
+  {% if success_message %}
+    <p style="color:green; text-align: center;">{{success_message}}</p>
+  {% endif  %}
+
+  <button type="submit">Save changes</button>&nbsp&nbsp&nbsp&nbsp<a href="{% url 'home' %}">Go Back</a><br><br>
+  <a href="{% url 'password_change' %}">Change password</a>
+</form>

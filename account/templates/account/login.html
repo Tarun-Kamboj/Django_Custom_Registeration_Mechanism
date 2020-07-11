@@ -1,0 +1,99 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In - My Kashmir</title>
+
+    <link rel="stylesheet" href="{% static 'account/signin.css' %}">
+    <link rel="stylesheet" href="{% static 'account/footer.css' %}">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="icon" href="{% static 'account/images/favicon.png' %}">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+
+    <script>
+        $(window, document, undefined).ready(function() {
+
+        $('input').blur(function() {
+            var $this = $(this);
+            if ($this.val())
+                $this.addClass('used');
+            else
+                $this.removeClass('used');
+            });
+
+        var $ripples = $('.ripples');
+
+        $ripples.on('click.Ripples', function(e) {
+
+            var $this = $(this);
+            var $offset = $this.parent().offset();
+            var $circle = $this.find('.ripplesCircle');
+
+            var x = e.pageX - $offset.left;
+            var y = e.pageY - $offset.top;
+
+            $circle.css({
+                top: y + 'px',
+                left: x + 'px'
+            });
+
+            $this.addClass('is-active');
+
+            });
+
+            $ripples.on('animationend webkitAnimationEnd mozAnimationEnd oanimationend MSAnimationEnd', function(e) {
+                $(this).removeClass('is-active');
+            });
+
+        });
+    </script>
+
+</head>
+<body>
+
+    <div class="signin">
+
+        <h1>Sign In</h1>
+        <h2>To access features like blog, and news.</h2>
+
+        <form method="post">{% csrf_token %}
+            <div class="group">
+              <input type="text" name="email" id="inputEmail" required><span class="highlight"></span><span class="bar"></span>
+              <label class="anim-label">Email</label>
+            </div>
+            <div class="group">
+              <input type="password" name="password" id="inputPassword" required><span class="highlight"></span><span class="bar"></span>
+              <label class="anim-label">Password</label>
+              <a href="{% url 'password_reset' %}">Forgot password?</a>
+            </div>
+
+            {% for field in login_form %}
+                <p>
+                  {% for error in field.errors %}
+                    <p style="color: red">{{ error }}</p>
+                  {% endfor %}
+                </p>
+            {% endfor %}
+            {% if login_form.non_field_errors %}
+              <div style="color: red">
+                <p>{{login_form.non_field_errors}}</p>
+              </div>
+
+            {% endif %}
+
+            <button type="submit" class="button buttonBlue">Sign In
+              <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+            </button>
+          </form>
+
+          <button type="button" class="button buttonSec"><a href="{% url 'account:register' %}">Create an account</a>
+          </button>
+
+    </div>
+
+</body>
+</html>

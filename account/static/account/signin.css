@@ -1,0 +1,425 @@
+/*Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap');
+/*------*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    overflow: hidden;
+}
+
+body{
+    padding: 1rem;
+    text-align: center;
+    /* background-image: url("https://ibgnews.com/wp-content/uploads/2016/05/Kashmir.jpg"); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+a{
+    color: rgb(37, 37, 236);
+    font-size: 14px;
+}
+
+h1{
+    color: #ff334c;
+    font-family: 'Raleway', 'Roboto' , sans-serif;
+}
+
+h2{
+    color: #6d6d6d;
+    margin-top: 1rem;
+    font-family: 'Roboto', sans-serif;
+}
+
+.signin 		{ 
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    font-family:'Roboto';
+    width: 40%; 
+
+    margin:30px auto 0; 
+    display:block; 
+    padding:10px 50px 50px;
+  }
+
+
+  form{
+    margin-top: 2rem;
+}
+
+/* form starting stylings ------------------------------- */
+
+hgroup { 
+	text-align:center;
+	margin-top: 4em;
+}
+
+.group { 
+	position: relative; 
+	margin-bottom: 45px; 
+}
+
+.group img{
+  visibility: hidden;
+  position: absolute;
+  width: 30px;
+  right: 10px;
+  top: 10px;
+}
+
+.group img.loaded{
+  visibility: visible;
+}
+.group a{
+    padding-top: 0.5rem;
+    position: absolute;
+    left: 0;
+    text-align: left;
+    color: rgb(37, 37, 236);
+}
+
+
+input[type="text"],input[type="password"] {
+	font-size: 18px;
+	padding: 10px 10px 10px 5px;
+	/* -webkit-appearance: none; */
+	display: block;
+	background: #fafafa;
+	color: #636363;
+	width: 100%;
+	border: none;
+	border-radius: 0;
+	border-bottom: 1px solid #757575;
+}
+
+input:focus { outline: none; }
+
+
+/* Label */
+
+label.anim-label, #main-label-gender {
+	color: #999; 
+	font-size: 18px;
+	font-weight: normal;
+	position: absolute;
+	pointer-events: none;
+	left: 5px;
+	top: 10px;
+	transition: all 0.2s ease;
+}
+
+
+/* active */
+
+input:focus ~ label.anim-label, input.used ~ label.anim-label {
+	top: -20px;
+  transform: scale(.75); left: -2px;
+	/* font-size: 14px; */
+	color: #ff334c;
+}
+
+
+/* Underline */
+
+.bar {
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.bar:before, .bar:after {
+	content: '';
+	height: 2px; 
+	width: 0;
+	bottom: 1px; 
+	position: absolute;
+	background: #ff334c; 
+	transition: all 0.2s ease;
+}
+
+.bar:before { left: 50%; }
+
+.bar:after { right: 50%; }
+
+
+/* active */
+
+input:focus ~ .bar:before, input:focus ~ .bar:after { width: 50%; }
+
+
+/* Highlight */
+
+.highlight {
+	position: absolute;
+	height: 60%; 
+	width: 100px; 
+	top: 25%; 
+	left: 0;
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+
+/* active */
+
+input:focus ~ .highlight {
+	animation: inputHighlighter 0.3s ease;
+}
+
+
+/* Animations */
+
+@keyframes inputHighlighter {
+	from { background: #ff334c; }
+	to 	{ width: 0; background: transparent; }
+}
+
+
+/* Button */
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 12px 24px;
+  margin: .3em 0 1em 0;
+  width: 40%;
+  vertical-align: middle;
+  color: #fff;
+  font-family: 'Roboto',sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
+  text-align: center;
+  letter-spacing: 1px;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.button:focus { outline: 0; }
+
+
+/* Button modifiers */
+
+.buttonBlue {
+  background: #ff334c;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+.buttonSec {
+  border: 3px solid #ff334c; 
+}
+
+.buttonSec a{
+  color: #ff334c;
+  text-decoration: none;
+}
+
+.buttonSec:hover {
+  border: 3px solid #b82536;
+}
+
+.buttonSec:hover a{
+  color: #b82536;
+}
+
+.buttonBlue:hover { background: #b82536; }
+
+
+/* Ripples container */
+
+.ripples {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+}
+
+
+/* Ripples circle */
+
+.ripplesCircle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.ripples.is-active .ripplesCircle {
+  animation: ripples .4s ease-in;
+}
+
+/* Ripples animation */
+
+@keyframes ripples {
+  0% { opacity: 0; }
+
+  25% { opacity: 1; }
+
+  100% {
+    width: 200%;
+    padding-bottom: 200%;
+    opacity: 0;
+  }
+}
+
+/*Sign Up Specific*/
+#signup .error{
+  visibility: hidden;
+}
+
+#signup .error.show{
+  visibility: visible;
+  position: absolute;
+  display: inline;
+  color: red;
+  width: 100%;
+  right: 0;
+}
+
+@media only screen and (max-width: 484px){
+  #signup .error.show{
+    width: 45%;
+  }
+}
+
+#signup .error p{
+  position: absolute;
+  
+}
+
+#signup i{
+  right: 0;
+  position: absolute;
+  color: red;
+}
+/*Media Queries*/
+@media only screen and (min-width: 1280px){
+    .signin{
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    #signup{
+      top: 0;
+    }
+}
+
+@media only screen and (max-width: 1280px){
+    .signin{
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 0;
+    }
+    .signin #signup{ 
+      position: absolute;
+      width: 100%;
+      top: 0 !important;
+      left: 0;
+  }
+    .button {
+        width: 80%;
+      }
+
+}
+
+/*Upload DP*/
+.currentImg img{
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-top: 1rem;
+}
+
+::-webkit-file-upload-button{
+  border: none;
+  color: white;
+  padding: 1rem;
+  cursor: pointer;
+  background: #ff334c;
+  text-shadow: 1px 1px 0 rgba(39, 110, 204, .5);
+}
+
+/*Gender*/
+input[type="radio"] {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+
+.radio-group {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+          align-items: center;
+  padding: 2rem 0.5rem 0 0.5rem;
+}
+
+label.gender-label {
+  color: #999;
+  position: relative;
+  margin-right: 1em;
+  padding-left: 2em;
+  padding-right: 1em;
+  line-height: 2;
+  cursor: pointer;
+}
+
+label.gender-label:before {
+  box-sizing: border-box;
+  content: " ";
+  position: absolute;
+  top: 0.3em;
+  left: 0;
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border: 2px solid #ff334c;
+  border-radius: .25em;
+  z-index: -1;
+}
+
+input[type="radio"] + label.gender-label::before {
+  border-radius: 1em;
+}
+
+/* Checked */
+input[type="radio"]:checked + label.gender-label {
+  padding-left: 1em;
+  color: #ffffff;
+}
+input[type="radio"]:checked + label.gender-label:before {
+  top: 0;
+  width: 100%;
+  height: 2em;
+  background: #ff334c;
+}
+
+/* Transition */
+label.gender-label,
+label.gender-label::before {
+  -webkit-transition: .25s all ease;
+  transition: .25s all ease;
+}
+
+#main-label-gender{
+  top: unset;
+}
