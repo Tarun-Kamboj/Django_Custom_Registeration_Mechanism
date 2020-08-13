@@ -1,4 +1,4 @@
-# Django_Custom_Registeration
+# Django Custom User Registeration Mechanism
 
 A custom user registration mechanism that overcomes the limitations of the traditional user registeration mechanism of Django.<br><br>
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
