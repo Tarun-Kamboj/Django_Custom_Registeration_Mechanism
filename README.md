@@ -2,7 +2,7 @@
 
 A custom user registration mechanism that overcomes the limitations of the traditional user registeration mechanism of Django.<br><br>
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
-[![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)](http://kambojtarun.pythonanywhere.com/)<br>
+![ForTheBadge built-with-love](http://ForTheBadge.com/images/badges/built-with-love.svg)<br>
 ![made-with-HTML](https://img.shields.io/badge/HTML-5.0-ff5230?style=for-the-badge&logo=HTML5)
 ![made-with-Django](https://img.shields.io/badge/Django-3.0-43993d?style=for-the-badge&logo=Django)
 
